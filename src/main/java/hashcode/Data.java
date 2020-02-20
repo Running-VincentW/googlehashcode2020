@@ -44,8 +44,11 @@ class Library{
     public int signUpTime;
     public final int id;
 
-    public Library(Integer[] bookIndexes, int shippingRate, int signUpTime, int id){
-	this.bookIndexes = bookIndexes;
+    public Library(Integer[] scores, Integer[] bookIndexes, int shippingRate, int signUpTime, int id){
+	//this.bookIndexes = bookIndexes;
+	for (int i = 0; i < bookIndexes.length; i++){
+	    books.add(new Book(bookIndexes[i], scores[bookIndexes[i]]));
+	}
 	this.shippingRate = shippingRate;
 	this.signUpTime = signUpTime;
 	this.id = id;

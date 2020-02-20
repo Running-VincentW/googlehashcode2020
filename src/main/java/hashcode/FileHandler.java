@@ -34,7 +34,7 @@ public class FileHandler {
 	       int signUp = libData[1];
 	       int rate = libData[2];
 	       Integer[] indexes = strArrayToIntArray(reader.readLine().split("//s"));
-	       libraries.add(new Library(indexes, rate, signUp, i));
+	       libraries.add(new Library(scores, indexes, rate, signUp, i));
 	   }
 	   data = new Data(libraries, booksLibrariesDays[2], scores);
        } catch (FileNotFoundException e){
@@ -61,7 +61,7 @@ public class FileHandler {
 	   writer.write("\n");
 	   for (Library lib : data.libraries){
 	       String str =
-		Integer.toString(lib.id) + Integer.toString(lib.bookIndexes.length) + "\n";
+		Integer.toString(lib.id) + Integer.toString(lib.books.size()) + "\n";
 	       writer.write(str);
 	       //record number of books
 	   }

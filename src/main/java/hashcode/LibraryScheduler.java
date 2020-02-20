@@ -33,8 +33,8 @@ public class LibraryScheduler {
 	int maxScore = 0;
 	for (Library lib : libraries){
 	    int score = (lib.shippingRate * daysRemaining) - lib.signUpTime;
-	    if (score > lib.bookIndexes.length){
-		score = lib.bookIndexes.length;
+	    if (score > lib.books.size()){
+		score = lib.books.size();
 	    }
 	    if (score > maxScore){
 		maxScore = score;
