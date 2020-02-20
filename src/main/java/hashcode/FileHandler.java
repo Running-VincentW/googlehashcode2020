@@ -6,9 +6,11 @@
 package hashcode;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -32,7 +34,7 @@ public class FileHandler {
 	       int signUp = libData[1];
 	       int rate = libData[2];
 	       Integer[] indexes = strArrayToIntArray(reader.readLine().split("//s"));
-	       libraries.add(new Library(indexes, rate, signUp));
+	       libraries.add(new Library(indexes, rate, signUp, i));
 	   }
 	   data = new Data(libraries, booksLibrariesDays[2], scores);
        } catch (FileNotFoundException e){
@@ -49,6 +51,24 @@ public class FileHandler {
 	   intArray[i] = Integer.parseInt(strArray[i]);
        }
        return intArray;
+   }
+   
+   public static void writeFile(String filePath, Data data){
+       File file = new File(filePath);
+       try {
+	   BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+	   writer.write(Integer.toString(data.libraries.size()));
+	   writer.write("\n");
+	   for (Library lib : data.libraries){
+	       String str =
+		Integer.toString(lib.id) + Integer.toString(lib.bookIndexes.length) + "\n";
+	       writer.write(str);
+	       //record number of books
+	   }
+       } catch (IOException e){
+	   System.out.println("...");
+       }
+       
    }
     
 }

@@ -29,11 +29,13 @@ class Library{
     public Integer[] bookIndexes;
     public int shippingRate;
     public int signUpTime;
+    public final int id;
     
-    public Library(Integer[] bookIndexes, int shippingRate, int signUpTime){
+    public Library(Integer[] bookIndexes, int shippingRate, int signUpTime, int id){
 	this.bookIndexes = bookIndexes;
 	this.shippingRate = shippingRate;
 	this.signUpTime = signUpTime;
+	this.id = id;
     }
     
 }
