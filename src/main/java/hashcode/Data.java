@@ -48,10 +48,12 @@ class Library{
     static Set<Book> scannedBooks;
     private ArrayList<Book> scannedBooksAtLibrary;
 
-    public Library(ArrayList<Book> books, int shippingRate){
+    public Library(ArrayList<Book> books, int shippingRate, int signUpTime, int id){
 //	this.books.addAll(books);
 	this.shippingRate = shippingRate;
 	this.books = books;
+	this.signUpTime = signUpTime;
+	this.id = id;
     }
 
 //    public int getDistinctNewBooks(){

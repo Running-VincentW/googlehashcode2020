@@ -31,10 +31,14 @@ public class FileHandler {
 	   for (int i = 0; i < booksLibrariesDays[1]; i++){
 	       // library data stuff
 	       Integer[] libData = strArrayToIntArray(reader.readLine().split("//s"));
+	       ArrayList<Book> books = new ArrayList<>();
 	       int signUp = libData[1];
 	       int rate = libData[2];
 	       Integer[] indexes = strArrayToIntArray(reader.readLine().split("//s"));
-	       libraries.add(new Library(scores, indexes, rate, signUp, i));
+	       for (int j = 0; j < libData[0]; j++){
+		   books.add(new Book(indexes[j], scores[indexes[j]]));
+	       }
+	       libraries.add(new Library(books, rate, signUp, i));
 	   }
 	   data = new Data(libraries, booksLibrariesDays[2], scores);
        } catch (FileNotFoundException e){
@@ -53,17 +57,27 @@ public class FileHandler {
        return intArray;
    }
    
-   public static void writeFile(String filePath, Data data){
+   public static void writeFile(String filePath, ArrayList<Library> libraries){
        File file = new File(filePath);
        try {
 	   BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-	   writer.write(Integer.toString(data.libraries.size()));
+	   writer.write(Integer.toString(libraries.size()));
 	   writer.write("\n");
-	   for (Library lib : data.libraries){
+	   for (Library lib : libraries){
 	       String str =
 		Integer.toString(lib.id) + Integer.toString(lib.books.size()) + "\n";
 	       writer.write(str);
 	       //record number of books
+	       ArrayList<Book> books = lib.scanBooks(lib.books.size());
+	       str = "";
+	       for (int i = 0; i < lib.books.size(); i++){
+		   str += Integer.toString(books.get(i).ID);
+		   if (i < lib.books.size() - 1){
+		       str += " ";
+		   }
+	       }
+	       str += "\n";
+	       writer.write(str);
 	   }
        } catch (IOException e){
 	   System.out.println("...");
