@@ -20,7 +20,7 @@ public class FileHandler {
     
    public static Data readFile(String filePath){
        File file = new File(filePath);
-       Data data;
+       Data data = null;
        ArrayList<Library> libraries = new ArrayList<>();
        try {
 	   BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -31,12 +31,16 @@ public class FileHandler {
 	       Integer[] libData = strArrayToIntArray(reader.readLine().split("//s"));
 	       int signUp = libData[1];
 	       int rate = libData[2];
+	       Integer[] indexes = strArrayToIntArray(reader.readLine().split("//s"));
+	       libraries.add(new Library(indexes, rate, signUp));
 	   }
+	   data = new Data(libraries, booksLibrariesDays[2], scores);
        } catch (FileNotFoundException e){
 	   System.out.println("YA DUN FUCKED UP");
        } catch (IOException e){
 	   System.out.println("KIRE CARRY ON");
        }
+       return data;
    }
    
    private static Integer[] strArrayToIntArray(String[] strArray){
