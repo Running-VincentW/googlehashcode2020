@@ -20,6 +20,7 @@ public class LibraryScheduler {
 	Library result;
 	for (int i = 0; i < length; i++){
 	    result = getNextLibrary(libraries, daysRemaining);
+	    daysRemaining -= result.signUpTime;
 	    sequence.add(result);
 	    libraries.remove(result);
 	}
