@@ -39,33 +39,34 @@ class Book implements Comparable<Book>{
 }
 
 class Library{
-    public PriorityQueue<Book> books = new PriorityQueue<>();
+//    public PriorityQueue<Book> books = new PriorityQueue<>();
+    public ArrayList<Book> books;
     public int shippingRate;
     public int signUpTime;
     public final int id;
 
-    public Library(Integer[] scores, Integer[] bookIndexes, int shippingRate, int signUpTime, int id){
-	//this.bookIndexes = bookIndexes;
-	for (int i = 0; i < bookIndexes.length; i++){
-	    books.add(new Book(bookIndexes[i], scores[bookIndexes[i]]));
-	}
+    static Set<Book> scannedBooks;
+    private ArrayList<Book> scannedBooksAtLibrary;
+
+    public Library(ArrayList<Book> books, int shippingRate){
+//	this.books.addAll(books);
 	this.shippingRate = shippingRate;
-	this.signUpTime = signUpTime;
-	this.id = id;
+	this.books = books;
     }
 
-    public int getDistinctNewBooks(){
-        int count = 0;
-        for (Book book : scannedBooks){
-            if (!scannedBooks.contains(book)){
-                count ++;
-            }
-        }
-        return count;
-    }
+//    public int getDistinctNewBooks(){
+//        int count = 0;
+//        for (Book book : scannedBooks){
+//            if (!scannedBooks.contains(book)){
+//                count ++;
+//            }
+//        }
+//        return count;
+//    }
 
-    public void scanBooks(){
-        this.books.p
+    public ArrayList<Book> scanBooks(int days){
+        Collections.sort(this.books);
+        return this.books;
     }
 
 }
