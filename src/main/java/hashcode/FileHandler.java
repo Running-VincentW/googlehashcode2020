@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,12 +20,17 @@ public class FileHandler {
     
    public static Data readFile(String filePath){
        File file = new File(filePath);
+       Data data;
+       ArrayList<Library> libraries = new ArrayList<>();
        try {
 	   BufferedReader reader = new BufferedReader(new FileReader(file));
 	   Integer[] booksLibrariesDays = strArrayToIntArray(reader.readLine().split("//s"));
 	   Integer[] scores = strArrayToIntArray(reader.readLine().split("//s"));
 	   for (int i = 0; i < booksLibrariesDays[1]; i++){
 	       // library data stuff
+	       Integer[] libData = strArrayToIntArray(reader.readLine().split("//s"));
+	       int signUp = libData[1];
+	       int rate = libData[2];
 	   }
        } catch (FileNotFoundException e){
 	   System.out.println("YA DUN FUCKED UP");

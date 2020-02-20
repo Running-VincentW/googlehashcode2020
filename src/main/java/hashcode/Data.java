@@ -28,10 +28,12 @@ public class Data {
 class Library{
     public Integer[] bookIndexes;
     public int shippingRate;
+    public int signUpTime;
     
-    public Library(Integer[] bookIndexes, int shippingRate){
+    public Library(Integer[] bookIndexes, int shippingRate, int signUpTime){
 	this.bookIndexes = bookIndexes;
 	this.shippingRate = shippingRate;
+	this.signUpTime = signUpTime;
     }
     
 }
